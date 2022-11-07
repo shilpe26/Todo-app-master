@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import SingleTodo from "./TodoRouting.jsx/SingleTodo";
+import SingleTodo from "./TodoRouting/SingleTodo";
 import Todo from "./todoComponents/Todo";
 
 
