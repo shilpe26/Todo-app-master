@@ -8,7 +8,7 @@ function TodoItems({ name, id, status, handleDelete, handleToggle,description })
 		<>
 			<h2 className="todo-id">
 				{id}
-				<Link to={`/todoItem/${id}`}><div className="todo-name">{name} 
+				<Link to={`/todo/${id}`}><div className="todo-name">{name} 
 				- {description}
 				</div></Link>
 			</h2>
