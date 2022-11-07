@@ -1,0 +1,41 @@
+.App {
+  text-align: center;
+}
+
+.add-todo {
+  margin: 1rem;
+}
+
+.add-btn {
+  margin-left: 1rem;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  margin: auto;
+  flex-wrap: wrap;
+}
+.todo-items{
+  display: flex;
+  flex-direction: column;
+  width: 80px;
+  margin: auto;
+  flex-wrap: wrap;
+
+}
+.todo-id{
+  display: flex;
+  align-items: center; 
+   justify-content: center;
+}
+.todo-name{
+  margin-left: 1rem;
+  font-size: 1rem;
+}
+.textarea-field{
+  margin-top: 1rem;
+}
