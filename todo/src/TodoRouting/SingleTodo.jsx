@@ -1,29 +1,37 @@
 import React, { useState } from 'react'
 import TodoItems from '../todoComponents/TodoItem'
-import { useParams } from 'react-router-dom';
+import { useParams ,Link} from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+
 import { useEffect } from 'react';
 import axios from "axios"
 
 function SingleTodo() {
   let {id} = useParams();
   const [showData, setShowData] = useState("")
+  const getTodoById = useSelector((state) => state.getTodoById);
+  const dispatch = useDispatch();
  
-  
   useEffect(() => {
-    async function getTodoById(id){
-      const {data} = await axios.get(`http://localhost:8080/todo/${id}`)
-      setShowData(data)
-  
-    }
-    getTodoById(id)
-  },[id])
-  return (
-    <div>Your Single Todo is here
 
- 
-        <TodoItems id={showData.id} name={showData.name} />
+    dispatch(getTodoById())
+      // setShowData(data)
+    }
+    // getTodoById(id)
+
+  ,[id])
+  return (
+    <div className='single-todo-container'>
+    <div className='single-page-todo'>Your Complete Todo is here
+
+        <TodoItems name={showData.name} description={showData.description} />
+
 
     </div>
+   <Link to="/"> <button className='back-todo-btn'>Back</button></Link>
+    </div>
+    
+    
   )
 }
 

@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
 import TodoItems from "./TodoItem";
 import {  deleteTodos, getTodos, toggleTodoStatus } from "./Api";
+import {useDispatch,useSelector} from 'react-redux'
+import {listTodos} from "../actions/todoActions";
 
 import AddTodo from "./AddTodo";
 
 const Todo = ({addNewTodo}) => {
-	const [data, setData] = useState([]);
+	const todoData = useSelector((state)=>state.todoList)
+	const {todos,loading,error,description} = todoData
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		getAllTodos();
 	}, []);
 
-//rendering all json server data
 	const getAllTodos = () => {
-		getTodos()
-			.then((res) => {
-				setData(res.data);
-			})
-			.catch((err) => {});
+		// getTodos()
+		// 	.then((res) => {
+		// 		setData(res.data);
+		// 	})
+		// 	.catch((err) => {});
+		dispatch(listTodos())
 	}
-
 
 
 	//handling the toggle feature 
@@ -41,7 +44,7 @@ const Todo = ({addNewTodo}) => {
 		<div>
 			<AddTodo addNewTodo={addNewTodo} callbackAfterAddTodoSuccess = {callbackAfterAddTodoSuccess}/>
 			<div className="todo-list">
-				{data.map((t) => (
+				{todos?.map((t) => (
 					<ul key={t.id}>
 						<TodoItems
 							className="todo-items"
