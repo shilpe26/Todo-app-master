@@ -8,8 +8,8 @@ import {
 } from "../actions/todoActions";
 
 import SingleTodoListing from "../todoComponents/SingleTodoListing";
-// import { MdDoneOutline, MdPendingActions } from "react-icons/md";
-// import { AiFillDelete } from "react-icons/ai";
+import { MdDoneOutline, MdPendingActions } from "react-icons/md";
+import { AiFillDelete } from "react-icons/ai";
 
 function SingleTodo() {
   let { id, name, description, status } = useParams();
@@ -38,7 +38,7 @@ function SingleTodo() {
 
   return (
     <div className="single-todo-container">
-      {/* {loading ? (
+      {loading ? (
         <h1>App is Loading</h1>
       ) : error ? (
         <h1>{error}</h1>
@@ -59,9 +59,9 @@ function SingleTodo() {
             </Link>
           </div>
         </div>
-      ) : null} */}
+      ) : null}
 
-      {loading ? (
+      {/* {loading ? (
         <h1>App is Loading</h1>
       ) : error ? (
         <h1>{error}</h1>
@@ -74,7 +74,7 @@ function SingleTodo() {
           handleToggle={handleToggle}
           handleDelete={handleDelete}
         />
-      ) : null}
+      ) : null} */}
 
       <Link to="/">
         {" "}
