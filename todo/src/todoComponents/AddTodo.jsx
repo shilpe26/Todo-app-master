@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { TODO_CREATE_RESET } from "../constants/todoConstants";
 import { createTodos } from "../actions/todoActions";
-import { useCallback } from "react";
 
 const initTodoState = {
   title: "",

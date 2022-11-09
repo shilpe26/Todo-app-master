@@ -9,8 +9,8 @@ import { useCallback } from "react";
 // TODO 2 : Clean up code
 const Todo = () => {
   const todoData = useSelector((state) => state.todoList);
-  const { todos, loading, error, success } = todoData;
   const dispatch = useDispatch();
+  const { todos, loading, error, success } = todoData;
 
   useEffect(() => {
     getAllTodos();
