@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { addTodo } from "./Api";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { TODO_CREATE_RESET } from "../constants/todoConstants";
 import { createTodos } from "../actions/todoActions";
+import { useCallback } from "react";
 
 const initTodoState = {
   title: "",
@@ -11,14 +11,11 @@ const initTodoState = {
 };
 
 function AddTodo({ callbackAfterAddTodoSuccess }) {
-  const createTodoData = useSelector((state) => state.createTodoData);
   const dispatch = useDispatch();
-  
-  
 
   useEffect(() => {
     dispatch({ type: TODO_CREATE_RESET });
-  }, []);
+  }, [dispatch]);
 
   const [todo, setTodo] = useState({
     ...initTodoState,
@@ -91,8 +88,7 @@ function AddTodo({ callbackAfterAddTodoSuccess }) {
           <span className="title-err-handler">{errors["description"]}</span>
         )}
       </div>
-	  <button className="add-btn">Add</button>
-    
+      <button className="add-btn">Add</button>
     </form>
   );
 }

@@ -1,20 +1,19 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import {composeWithDevTools} from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
 import {
-    todoListReducer,createTodoReducer,getTodoByIdReducer
-} from './reducers/todoReducers';
+  todoListReducer,
+  createTodoReducer,
+  getTodoByIdReducer,
+} from "./reducers/todoReducers";
 
 const reducer = combineReducers({
-  todoList:todoListReducer,
-  createTodoData:createTodoReducer,
-  getTodoById: getTodoByIdReducer
+  todoList: todoListReducer,
+  createTodoData: createTodoReducer,
+  getTodoById: getTodoByIdReducer,
 });
 
-
-const initialState = {
-  
-};
+const initialState = {};
 
 const middleware = [thunk];
 
