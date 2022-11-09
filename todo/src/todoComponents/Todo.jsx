@@ -6,7 +6,7 @@ import { listTodos } from "../actions/todoActions";
 
 import AddTodo from "./AddTodo";
 import { useCallback } from "react";
-// TODO 2 : Clean up code
+
 const Todo = () => {
   const todoData = useSelector((state) => state.todoList);
   const dispatch = useDispatch();

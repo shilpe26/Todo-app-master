@@ -12,7 +12,7 @@ import { MdDoneOutline, MdPendingActions } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
 
 function SingleTodo() {
-  let { id, name, description, status } = useParams();
+  let { id } = useParams();
   const dispatch = useDispatch();
   const getTodoById = useSelector((state) => state.getTodoById);
   const deletetodo = useSelector((state) => state.deleteTodo);
@@ -38,12 +38,12 @@ function SingleTodo() {
 
   return (
     <div className="single-todo-container">
-      {loading ? (
+      {/* {loading ? (
         <h1>App is Loading</h1>
       ) : error ? (
         <h1>{error}</h1>
       ) : success ? (
-        //Single todo lsiting page
+        // Single todo lsiting page
         <div className="single-page-todo">
           Your Complete Todo is here
           <div>{todo?.name}</div>
@@ -59,16 +59,21 @@ function SingleTodo() {
             </Link>
           </div>
         </div>
-      ) : //end of single todo listing page
-      null}
-      {/* <SingleTodoListing
-          name={name}
-          id={id}
-          description={description}
-          status={status}
-          handleToggle={handleToggle}
-          handleDelete={handleDelete}
-        /> */}
+      ) : null} */}
+      {loading ? (
+        <h1>App is Loading</h1>
+      ) : error ? (
+        <h1>{error}</h1>
+      ) : success ? (
+        <SingleTodoListing
+          name={todo.name}
+          id={todo.id}
+          description={todo.description}
+          status={todo.status}
+          handleToggle={todo.handleToggle}
+          handleDelete={todo.handleDelete}
+        />
+      ) : null}
 
       <Link to="/">
         {" "}

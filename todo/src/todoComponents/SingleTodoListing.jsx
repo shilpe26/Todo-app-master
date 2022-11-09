@@ -12,7 +12,6 @@ import {
 function SingleTodoListing({ id, name, description, status }) {
   const dispatch = useDispatch();
   const getTodoById = useSelector((state) => state.getTodoById);
-  const { todo, loading, error, success } = getTodoById;
 
   const getTodoByIdData = useCallback(() => {
     dispatch(getTodoByIdRenderCall(id));
