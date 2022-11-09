@@ -12,13 +12,13 @@ const Todo = () => {
   const dispatch = useDispatch();
   const { todos, loading, error, success } = todoData;
 
-  useEffect(() => {
-    getAllTodos();
-  }, []);
-
   const getAllTodos = useCallback(() => {
     dispatch(listTodos());
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    getAllTodos();
+  }, [getAllTodos]);
 
   //handling the toggle feature
   const handleToggle = (id, newStatus) => {
@@ -31,10 +31,9 @@ const Todo = () => {
       getAllTodos();
     });
   };
-
   const callbackAfterAddTodoSuccess = useCallback(() => {
     getAllTodos();
-  }, []);
+  }, [getAllTodos]);
 
   return (
     <div>

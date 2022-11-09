@@ -5,12 +5,16 @@ import {
   todoListReducer,
   createTodoReducer,
   getTodoByIdReducer,
+  todoDeleteReducer,
+  todoToggleReducer,
 } from "./reducers/todoReducers";
 
 const reducer = combineReducers({
   todoList: todoListReducer,
   createTodoData: createTodoReducer,
   getTodoById: getTodoByIdReducer,
+  deleteTodo: todoDeleteReducer,
+  toggleTodoData: todoToggleReducer,
 });
 
 const initialState = {};

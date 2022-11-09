@@ -8,8 +8,20 @@ import {
   TODO_BY_ID_REQUEST,
   TODO_BY_ID_SUCCESS,
   TODO_BY_ID_FAIL,
+  TODO_DELETE_REQUEST,
+  TODO_DELETE_SUCCESS,
+  TODO_DELETE_FAIL,
+  TODO_TOGGLE_REQUEST,
+  TODO_TOGGLE_SUCCESS,
+  TODO_TOGGLE_FAIL,
 } from "../constants/todoConstants";
-import { addTodo, getTodos, getTodoByIdApiCall } from "../todoComponents/Api";
+import {
+  addTodo,
+  getTodos,
+  getTodoByIdApiCall,
+  deleteTodos,
+  toggleTodoStatus,
+} from "../todoComponents/Api";
 
 export const listTodos = () => async (dispatch) => {
   try {
@@ -63,6 +75,45 @@ export const getTodoByIdRenderCall = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: TODO_BY_ID_FAIL,
+      payload: "Something went wrong",
+    });
+  }
+};
+
+export const deleteTodo = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: TODO_DELETE_REQUEST,
+    });
+
+    await deleteTodos(id);
+
+    dispatch({
+      type: TODO_DELETE_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: TODO_DELETE_FAIL,
+      payload: "Something went wrong",
+    });
+  }
+};
+
+export const toggleTodo = (params, callback) => async (dispatch) => {
+  try {
+    dispatch({
+      type: TODO_TOGGLE_REQUEST,
+    });
+
+    const { data } = await toggleTodoStatus(params);
+    callback();
+    dispatch({
+      type: TODO_TOGGLE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: TODO_TOGGLE_FAIL,
       payload: "Something went wrong",
     });
   }
