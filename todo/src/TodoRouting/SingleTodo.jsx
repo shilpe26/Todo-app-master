@@ -8,11 +8,11 @@ import {
 } from "../actions/todoActions";
 
 import SingleTodoListing from "../todoComponents/SingleTodoListing";
-import { MdDoneOutline, MdPendingActions } from "react-icons/md";
-import { AiFillDelete } from "react-icons/ai";
+// import { MdDoneOutline, MdPendingActions } from "react-icons/md";
+// import { AiFillDelete } from "react-icons/ai";
 
 function SingleTodo() {
-  let { id } = useParams();
+  let { id, name, description, status } = useParams();
   const dispatch = useDispatch();
   const getTodoById = useSelector((state) => state.getTodoById);
   const deletetodo = useSelector((state) => state.deleteTodo);
@@ -60,18 +60,19 @@ function SingleTodo() {
           </div>
         </div>
       ) : null} */}
+
       {loading ? (
         <h1>App is Loading</h1>
       ) : error ? (
         <h1>{error}</h1>
       ) : success ? (
         <SingleTodoListing
-          name={todo.name}
-          id={todo.id}
-          description={todo.description}
-          status={todo.status}
-          handleToggle={todo.handleToggle}
-          handleDelete={todo.handleDelete}
+          name={name}
+          id={id}
+          description={description}
+          status={status}
+          handleToggle={handleToggle}
+          handleDelete={handleDelete}
         />
       ) : null}
 
