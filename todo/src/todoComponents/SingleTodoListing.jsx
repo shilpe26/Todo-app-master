@@ -1,42 +1,35 @@
 import React, { useCallback, useEffect } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { MdPendingActions, MdDoneOutline } from "react-icons/md";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-// import {
-//   deleteTodo,
-//   getTodoByIdRenderCall,
-//   toggleTodo,
-// } from "../actions/todoActions";
+import {
+  deleteTodo,
+  getTodoByIdRenderCall,
+  toggleTodo,
+} from "../actions/todoActions";
 
-function SingleTodoListing({
-  id,
-  name,
-  description,
-  status,
-  handleDelete,
-  handleToggle,
-}) {
-  //   const dispatch = useDispatch();
-  //   const getTodoById = useSelector((state) => state.getTodoById);
-  //   const { todo, loading, error, success } = getTodoById;
+function SingleTodoListing({ id, name, description, status }) {
+  const dispatch = useDispatch();
+  const getTodoById = useSelector((state) => state.getTodoById);
+  const { todo, loading, error, success } = getTodoById;
 
-  //   const getTodoByIdData = useCallback(() => {
-  //     dispatch(getTodoByIdRenderCall(id));
-  //   }, [dispatch, id]);
+  const getTodoByIdData = useCallback(() => {
+    dispatch(getTodoByIdRenderCall(id));
+  }, [dispatch, id]);
 
-  //   useEffect(() => {
-  //     getTodoByIdData();
-  //   }, [getTodoByIdData]);
+  useEffect(() => {
+    getTodoByIdData();
+  }, [getTodoByIdData]);
 
-  //   const handleDelete = (id) => {
-  //     dispatch(deleteTodo(id));
-  //   };
+  const handleDelete = (id) => {
+    dispatch(deleteTodo(id));
+  };
 
-  //   const handleToggle = (id, newStatus) => {
-  //     const toggleTodoParams = { id, newStatus };
-  //     dispatch(toggleTodo(toggleTodoParams, () => getTodoByIdData()));
-  //   };
+  const handleToggle = (id, newStatus) => {
+    const toggleTodoParams = { id, newStatus };
+    dispatch(toggleTodo(toggleTodoParams, () => getTodoByIdData()));
+  };
 
   return (
     <div>

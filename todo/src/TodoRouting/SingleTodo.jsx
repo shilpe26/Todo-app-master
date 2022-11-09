@@ -43,16 +43,9 @@ function SingleTodo() {
       ) : error ? (
         <h1>{error}</h1>
       ) : success ? (
+        //Single todo lsiting page
         <div className="single-page-todo">
           Your Complete Todo is here
-          {/* <SingleTodoListing
-          name={name}
-          id={id}
-          description={description}
-          status={status}
-          handleToggle={handleToggle}
-          handleDelete={handleDelete}
-        /> */}
           <div>{todo?.name}</div>
           <div>{todo?.description}</div>
           <div>
@@ -66,7 +59,16 @@ function SingleTodo() {
             </Link>
           </div>
         </div>
-      ) : null}
+      ) : //end of single todo listing page
+      null}
+      {/* <SingleTodoListing
+          name={name}
+          id={id}
+          description={description}
+          status={status}
+          handleToggle={handleToggle}
+          handleDelete={handleDelete}
+        /> */}
 
       <Link to="/">
         {" "}
