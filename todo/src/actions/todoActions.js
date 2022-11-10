@@ -41,7 +41,7 @@ export const listTodos = () => async (dispatch) => {
   }
 };
 
-export const createTodos = (todo, callback) => async (dispatch) => {
+export const createTodo = (todo, callback) => async (dispatch) => {
   try {
     dispatch({
       type: TODO_CREATE_REQUEST,
@@ -80,13 +80,14 @@ export const getTodoByIdRenderCall = (id) => async (dispatch) => {
   }
 };
 
-export const deleteTodo = (id) => async (dispatch) => {
+export const deleteTodo = (id, callback) => async (dispatch) => {
   try {
     dispatch({
       type: TODO_DELETE_REQUEST,
     });
 
     await deleteTodos(id);
+    callback();
 
     dispatch({
       type: TODO_DELETE_SUCCESS,
@@ -107,6 +108,7 @@ export const toggleTodo = (params, callback) => async (dispatch) => {
 
     const { data } = await toggleTodoStatus(params);
     callback();
+
     dispatch({
       type: TODO_TOGGLE_SUCCESS,
       payload: data,

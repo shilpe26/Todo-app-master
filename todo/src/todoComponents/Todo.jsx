@@ -1,16 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import TodoItems from "./TodoItem";
-import { deleteTodos, toggleTodoStatus } from "./Api";
-import { useDispatch, useSelector } from "react-redux";
-import { listTodos } from "../actions/todoActions";
-
+import { useSelector, useDispatch } from "react-redux";
+import { deleteTodo, listTodos, toggleTodo } from "../actions/todoActions";
 import AddTodo from "./AddTodo";
 import { useCallback } from "react";
 
 const Todo = () => {
   const todoData = useSelector((state) => state.todoList);
-  const dispatch = useDispatch();
   const { todos, loading, error, success } = todoData;
+  const dispatch = useDispatch();
 
   const getAllTodos = useCallback(() => {
     dispatch(listTodos());
@@ -20,17 +18,15 @@ const Todo = () => {
     getAllTodos();
   }, [getAllTodos]);
 
-  //handling the toggle feature
-  const handleToggle = (id, newStatus) => {
-    toggleTodoStatus({ id, newStatus }).then(() => getAllTodos());
+  const handleDelete = (id) => {
+    dispatch(deleteTodo(id, () => getAllTodos()));
   };
 
-  //handling delete feature
-  const handleDelete = (id) => {
-    deleteTodos(id).then(() => {
-      getAllTodos();
-    });
+  const handleToggle = (id, newStatus) => {
+    const toggleTodoParams = { id, newStatus };
+    dispatch(toggleTodo(toggleTodoParams, () => getAllTodos()));
   };
+
   const callbackAfterAddTodoSuccess = useCallback(() => {
     getAllTodos();
   }, [getAllTodos]);
@@ -45,19 +41,44 @@ const Todo = () => {
         <div>
           <AddTodo callbackAfterAddTodoSuccess={callbackAfterAddTodoSuccess} />
           <div className="todo-list">
-            {todos?.map((t) => (
-              <ul key={t.id}>
-                <TodoItems
-                  className="todo-items"
-                  handleDelete={handleDelete}
-                  key={t.id}
-                  name={t.name}
-                  id={t.id}
-                  status={t.status}
-                  handleToggle={handleToggle}
-                />
-              </ul>
-            ))}
+            <h4>In Progress Todos</h4>
+            {todos
+              ?.filter((t) => !t.status)
+              ?.map((t) => {
+                return (
+                  <ul key={t.id}>
+                    <TodoItems
+                      className="todo-items"
+                      handleDelete={handleDelete}
+                      key={t.id}
+                      name={t.name}
+                      id={t.id}
+                      status={t.status}
+                      handleToggle={handleToggle}
+                    />
+                  </ul>
+                );
+              })}
+
+            <h4>Completed Tasks</h4>
+
+            {todos
+              ?.filter((t) => t.status)
+              ?.map((t) => {
+                return (
+                  <ul key={t.id}>
+                    <TodoItems
+                      className="todo-items"
+                      handleDelete={handleDelete}
+                      key={t.id}
+                      name={t.name}
+                      id={t.id}
+                      status={t.status}
+                      handleToggle={handleToggle}
+                    />
+                  </ul>
+                );
+              })}
           </div>
         </div>
       ) : null}
