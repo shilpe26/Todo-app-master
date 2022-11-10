@@ -48,6 +48,7 @@ export const createTodoReducer = (state = {}, action) => {
       return state;
   }
 };
+
 export const getTodoByIdReducer = (state = { todo: {} }, action) => {
   switch (action.type) {
     case TODO_BY_ID_REQUEST:
@@ -73,6 +74,7 @@ export const todoDeleteReducer = (state = { todo: {} }, action) => {
       return state;
   }
 };
+
 export const todoToggleReducer = (state = {}, action) => {
   switch (action.type) {
     case TODO_TOGGLE_REQUEST:

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import TodoItems from "./TodoItem";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTodo, listTodos, toggleTodo } from "../actions/todoActions";
